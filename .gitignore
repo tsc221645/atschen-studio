@@ -1,0 +1,6 @@
+node_modules
+dist
+.DS_Store
+*.local
+CODEX_IMPLEMENTACION.md
+GITHUB_PAGES_ACTIONS_GUIA.md
