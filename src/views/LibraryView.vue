@@ -9,10 +9,9 @@ const published = [...notebooks]
   <section class="page-shell view">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">Biblioteca abierta</p>
         <h1>Sketchbooks</h1>
       </div>
-      <p class="intro">Libros de artista digitales para hojear sin prisa.</p>
+      <p class="intro">En esta sección puedes visualizar algunos de mis sketchbooks.</p>
     </div>
     <div class="notebook-grid">
       <NotebookCard v-for="book in published" :key="book.id" :notebook="book" />

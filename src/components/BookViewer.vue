@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, reactive, ref } from "vue";
 import type { Notebook, NotebookPage } from "../types";
 import { useNotebookNavigation } from "../composables/useNotebookNavigation";
+import { assetUrl } from "../utils/assetUrl";
 import PageSheet from "./PageSheet.vue";
 
 const props = defineProps<{ notebook: Notebook }>();
@@ -36,7 +37,15 @@ onUnmounted(() => window.removeEventListener("keydown", key));
         @click="opened = true"
       >
         <img :src="notebook.coverImage" :alt="notebook.coverAlt" />
-        <span class="open-label">Abrir cuaderno</span>
+        <span class="open-label">
+          Abrir cuaderno
+          <img
+            class="open-icon"
+            :src="assetUrl('assets/open_icon.png')"
+            alt=""
+            aria-hidden="true"
+          />
+        </span>
       </button>
     </div>
 
@@ -55,34 +64,73 @@ onUnmounted(() => window.removeEventListener("keydown", key));
         />
       </div>
 
-      <div class="book-toolbar">
-        <button
-          class="icon-button"
-          :disabled="!nav.canPrevious"
-          @click="move(-1)"
-        >
-          ← Anterior
-        </button>
-        <span
-          >{{
-            nav.mode === "book"
-              ? `páginas ${nav.index + 1}–${Math.min(nav.index + 2, notebook.pages.length)}`
-              : `página ${nav.index + 1}`
-          }}
-          / {{ notebook.pages.length }}</span
-        >
-        <button class="icon-button" :disabled="!nav.canNext" @click="move(1)">
-          Siguiente →
-        </button>
-        <button
-          class="icon-button"
-          @click="nav.mode = nav.mode === 'book' ? 'single' : 'book'"
-        >
-          {{ nav.mode === "book" ? "Vista individual" : "Vista libro" }}
-        </button>
-        <button class="icon-button" @click="opened = false">
-          Cerrar portada
-        </button>
+      <div class="book-controls">
+        <div class="book-navigation" aria-label="Navegación de páginas">
+          <button
+            class="page-arrow"
+            type="button"
+            aria-label="Página anterior"
+            :disabled="!nav.canPrevious"
+            @click="move(-1)"
+          >
+            <span aria-hidden="true">←</span>
+            <span class="control-label">Anterior</span>
+          </button>
+          <div class="page-status" aria-live="polite">
+            <span class="page-status__number">
+              {{
+                nav.mode === "book"
+                  ? `${nav.index + 1}–${Math.min(nav.index + 2, notebook.pages.length)}`
+                  : nav.index + 1
+              }}
+            </span>
+            <span class="page-status__total">/ {{ notebook.pages.length }}</span>
+            <span class="page-status__label">{{
+              nav.mode === "book" ? "páginas" : "página"
+            }}</span>
+          </div>
+          <button
+            class="page-arrow"
+            type="button"
+            aria-label="Página siguiente"
+            :disabled="!nav.canNext"
+            @click="move(1)"
+          >
+            <span class="control-label">Siguiente</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+        <input
+          class="page-progress"
+          type="range"
+          min="0"
+          :max="notebook.pages.length - 1"
+          :value="nav.index"
+          :aria-label="`Ir a una página de ${notebook.title}`"
+          @input="nav.setIndex(Number(($event.target as HTMLInputElement).value))"
+        />
+        <div class="book-options">
+          <button
+            class="viewer-option"
+            type="button"
+            :aria-pressed="nav.mode === 'single'"
+            @click="nav.mode = nav.mode === 'book' ? 'single' : 'book'"
+          >
+            <span aria-hidden="true">{{
+              nav.mode === "book" ? "▯" : "▯▯"
+            }}</span>
+            {{ nav.mode === "book" ? "Vista individual" : "Vista libro" }}
+          </button>
+          <button
+            class="viewer-option"
+            type="button"
+            aria-label="Volver a la portada del cuaderno"
+            @click="opened = false"
+          >
+            <span aria-hidden="true">⌂</span>
+            Cerrar portada
+          </button>
+        </div>
       </div>
     </template>
 
@@ -124,16 +172,143 @@ onUnmounted(() => window.removeEventListener("keydown", key));
   position: absolute;
   bottom: 1.5rem;
   left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   transform: translateX(-50%);
-  background: rgba(20, 20, 15, 0.55);
-  padding: 0.65rem 1rem;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.7rem;
+  white-space: nowrap;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(29, 30, 32, 0.88);
+  padding: 0.8rem 1.15rem;
+  color: #f3f0eb;
+  font-size: 0.82rem;
+  font-weight: 650;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+.cover-shell:hover .open-label,
+.cover-shell:focus-visible .open-label {
+  background: var(--accent-orange);
+  color: #1d1e20;
+  transform: translate(-50%, -3px);
 }
 .book-paper {
   min-width: 0;
+}
+.book-controls {
+  width: min(100%, 620px);
+  margin: 0 auto;
+  padding: 1rem clamp(0.75rem, 3vw, 1.4rem);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--paper-deep);
+}
+.book-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.page-arrow {
+  min-width: 2.8rem;
+  min-height: 2.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.55rem 0.85rem;
+  font-size: 0.82rem;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+.page-arrow:hover:not(:disabled),
+.page-arrow:focus-visible:not(:disabled) {
+  border-color: var(--accent-orange);
+  background: var(--accent-orange);
+  color: #1d1e20;
+  transform: translateY(-1px);
+}
+.page-arrow:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+.page-arrow > span:first-child,
+.page-arrow > span:last-child {
+  font-size: 1.05rem;
+}
+.page-status {
+  display: grid;
+  align-items: center;
+  gap: 0.55rem;
+  grid-auto-flow: column;
+  justify-items: center;
+  gap: 0.1rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.open-icon {
+  width: 0.85rem;
+  height: 0.85rem;
+  object-fit: contain;
+}
+.page-status__number {
+  color: var(--ink);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.page-status__total,
+.page-status__label {
+  font-size: 0.72rem;
+}
+.page-progress {
+  width: 100%;
+  height: 1.1rem;
+  display: block;
+  margin: 0.65rem 0;
+  accent-color: var(--accent-orange);
+  cursor: pointer;
+}
+.book-options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+.viewer-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  padding: 0.55rem 0.8rem;
+  font-size: 0.78rem;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+.viewer-option:hover,
+.viewer-option:focus-visible,
+.viewer-option[aria-pressed="true"] {
+  border-color: rgba(255, 135, 74, 0.35);
+  background: rgba(255, 135, 74, 0.1);
+  color: var(--accent-orange);
+}
+.viewer-option span {
+  font-size: 1rem;
 }
 .zoom-layer {
   position: fixed;

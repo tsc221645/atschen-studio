@@ -29,17 +29,22 @@ const open = ref(false);
       </nav>
     </div>
   </header>
-  <main id="main"><RouterView /></main>
+  <main id="main">
+    <RouterView v-slot="{ Component, route }">
+      <Transition name="section" mode="out-in">
+        <component :is="Component" :key="route.path" />
+      </Transition>
+    </RouterView>
+  </main>
   <footer class="site-footer">
     <div class="page-shell footer-inner">
-      <span>© {{ new Date().getFullYear() }} {{ site.artistName }}</span
-      ><span class="muted">hecho despacio, publicado con cuidado</span>
+      <span>© {{ new Date().getFullYear() }} {{ site.artistName }}</span>
     </div>
   </footer>
 </template>
 <style scoped>
 .site-header {
-  background: rgba(246, 241, 231, 0.88);
+  background: rgba(29, 30, 32, 0.88);
   border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
@@ -56,7 +61,10 @@ const open = ref(false);
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  font-size: 1.75rem;
+  font-family: var(--display-font);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.045em;
   text-decoration: none;
 }
 .logo-slot {
@@ -71,7 +79,7 @@ const open = ref(false);
   object-fit: contain;
 }
 .brand span {
-  color: var(--moss);
+  color: var(--accent-orange);
 }
 .site-nav {
   display: flex;
@@ -84,9 +92,17 @@ const open = ref(false);
   text-decoration: none;
   padding: 0.5rem 0;
   border-bottom: 1px solid transparent;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--accent-yellow);
 }
 .site-nav a.router-link-active {
-  border-color: var(--moss);
+  color: var(--accent-orange);
+  border-color: var(--accent-red);
 }
 .menu-button {
   display: none;
@@ -104,7 +120,7 @@ const open = ref(false);
     top: 72px;
     left: 0;
     right: 0;
-    background: var(--paper);
+    background: var(--paper-deep);
     padding: 1rem 1.25rem;
     flex-direction: column;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
@@ -121,12 +137,8 @@ const open = ref(false);
 }
 .footer-inner {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1rem;
-}
-@media (max-width: 640px) {
-  .footer-inner {
-    flex-direction: column;
-  }
+  text-align: center;
 }
 </style>

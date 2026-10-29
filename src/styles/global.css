@@ -7,7 +7,9 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: radial-gradient(circle at 20% 0, #e8e1d6, #d8d0c3 60%);
+  background:
+    radial-gradient(ellipse at 18% 0, rgba(255, 135, 74, 0.08), transparent 34rem),
+    var(--paper);
   color: var(--ink);
 }
 button,
@@ -30,6 +32,7 @@ button {
   z-index: 20;
   background: var(--paper);
   padding: 0.7rem;
+  outline: 2px solid var(--accent-yellow);
 }
 .page-shell {
   max-width: 1180px;
@@ -40,11 +43,12 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-size: 0.7rem;
-  color: var(--moss);
+  color: var(--accent-yellow);
   font-weight: 700;
 }
 .serif {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--display-font);
+  letter-spacing: -0.045em;
 }
 .section-heading {
   display: flex;
@@ -58,31 +62,52 @@ button {
 .section-heading h1,
 .section-heading h2 {
   font:
-    clamp(2rem, 5vw, 4.5rem) / 0.95 Georgia,
-    serif;
+    clamp(2rem, 5vw, 4.5rem) / 0.95 var(--display-font);
   margin: 0.35rem 0 0;
-  font-weight: 400;
+  font-weight: 650;
+  letter-spacing: -0.05em;
 }
 .text-link {
-  color: var(--moss);
+  color: var(--accent-orange);
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
+  transition: color 0.25s ease;
+}
+.text-link:hover,
+.text-link:focus-visible {
+  color: var(--accent-yellow);
 }
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--accent-orange);
   padding: 0.75rem 1rem;
   text-decoration: none;
   background: transparent;
   color: var(--ink);
-  transition: 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 .button:hover,
 .button:focus-visible {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--accent-orange);
+  border-color: var(--accent-orange);
+  color: #1d1e20;
+  transform: translateY(-2px);
+}
+.button-primary {
+  background: var(--accent-orange);
+  border-color: var(--accent-orange);
+  color: #1d1e20;
+}
+.button-primary:hover,
+.button-primary:focus-visible {
+  background: var(--accent-yellow);
+  border-color: var(--accent-yellow);
 }
 .muted {
   color: var(--muted);
@@ -90,6 +115,20 @@ button {
 .paper-panel {
   background: var(--paper);
   box-shadow: var(--shadow);
+}
+.section-enter-active,
+.section-leave-active {
+  transition:
+    opacity 0.3s ease,
+    transform 0.38s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+.section-enter-from {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.section-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
 }
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -22,7 +22,6 @@ function close() {
   <section class="page-shell view">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">Obra seleccionada</p>
         <h1>Gallery</h1>
       </div>
       <div class="filters" aria-label="Filtrar por técnica">
@@ -72,10 +71,17 @@ function close() {
   background: transparent;
   color: var(--muted);
   padding: 0.4rem;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 .filters button.active {
-  color: var(--ink);
-  border-color: var(--moss);
+  color: var(--accent-orange);
+  border-color: var(--accent-red);
+}
+.filters button:hover,
+.filters button:focus-visible {
+  color: var(--accent-yellow);
 }
 .lightbox {
   position: fixed;

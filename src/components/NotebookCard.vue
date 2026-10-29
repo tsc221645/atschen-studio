@@ -32,7 +32,7 @@ defineProps<{ notebook: Notebook }>();
 }
 .cover {
   position: relative;
-  transition: transform 0.25s;
+  transition: transform 0.4s cubic-bezier(0.2, 0.75, 0.25, 1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,11 +50,9 @@ defineProps<{ notebook: Notebook }>();
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  color: #fff;
-  font:
-    1rem Georgia,
-    serif;
-  background: rgba(0, 0, 0, 0.28);
+  color: #1d1e20;
+  font: 700 0.85rem var(--display-font);
+  background: var(--accent-yellow);
   padding: 0.3rem;
 }
 .notebook-link:hover .cover,
@@ -62,10 +60,8 @@ defineProps<{ notebook: Notebook }>();
   transform: rotate(-1.2deg) translateY(-5px);
 }
 .card-meta h2 {
-  font:
-    1.8rem Georgia,
-    serif;
-  font-weight: 400;
+  font: 700 1.8rem var(--display-font);
+  letter-spacing: -0.04em;
   margin: 0;
 }
 .card-meta p {
@@ -74,6 +70,6 @@ defineProps<{ notebook: Notebook }>();
   margin: 0.5rem 0;
 }
 .card-meta small {
-  color: var(--moss);
+  color: var(--accent-yellow);
 }
 </style>

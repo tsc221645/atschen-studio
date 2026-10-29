@@ -96,45 +96,46 @@ export const notebooks: Notebook[] = [
     coverStyle: "linen",
     pages: [
       {
-        id: "standard-01",
+        id: "page0",
         alt: "Página escaneada del Sketchbook 2026",
         fullPageImage: assetUrl("images/notebooks/standard/page-01.svg"),
       },
-      page("standard-02", "Página con una rama", [
-        drawing(
-          "d",
-          "images/notebooks/standard/branch.svg",
-          "Rama dibujada",
-          35,
-          28,
-          55,
-        ),
-        note("n", "mirar antes de nombrar", 22, 82),
-      ]),
-      page("standard-03", "Página con dos formas botánicas", [
-        drawing(
-          "d1",
-          "images/notebooks/standard/leaf.svg",
-          "Hoja dibujada",
-          18,
-          30,
-          30,
-        ),
-        drawing(
-          "d2",
-          "images/notebooks/standard/seed.svg",
-          "Semilla dibujada",
-          65,
-          46,
-          30,
-        ),
-        note("n", "dos formas de abrirse", 30, 80, 2),
-      ]),
       {
-        id: "standard-04",
-        alt: "Página escaneada con anotaciones",
-        fullPageImage: assetUrl("images/notebooks/standard/page-04.svg"),
+        id: "page1",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page1.svg"),
       },
+      {
+        id: "page2",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page2.svg"),
+      },
+      {
+        id: "page3",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page3.svg"),
+      },
+      {
+        id: "page4",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page4.svg"),
+      },
+      {
+        id: "page5",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page5.svg"),
+      },
+      {
+        id: "page6",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page6.svg"),
+      },
+      {
+        id: "page7",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page7.svg"),
+      },
+    
     ],
   },
   {

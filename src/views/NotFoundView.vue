@@ -14,10 +14,9 @@ import { RouterLink } from "vue-router";
   min-height: 65vh;
 }
 .not-found h1 {
-  font:
-    clamp(2.5rem, 7vw, 5rem) Georgia,
-    serif;
-  font-weight: 400;
+  font: clamp(2.5rem, 7vw, 5rem) var(--display-font);
+  font-weight: 700;
+  letter-spacing: -0.06em;
   max-width: 700px;
 }
 </style>

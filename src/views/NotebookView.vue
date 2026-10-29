@@ -46,7 +46,8 @@ const notebook = computed(() =>
 }
 .notebook-intro h1 {
   font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 400;
+  font-weight: 700;
+  letter-spacing: -0.06em;
   margin: 0.4rem 0;
 }
 .notebook-intro p {
