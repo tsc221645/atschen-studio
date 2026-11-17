@@ -135,6 +135,46 @@ export const notebooks: Notebook[] = [
         alt: "Página escaneada del Sketchbook 2026",
         fullPageImage: assetUrl("images/notebooks/standard/page7.svg"),
       },
+      {
+        id: "page8",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page8.svg"),
+      },
+      {
+        id: "page9",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page9.svg"),
+      },
+      {
+        id: "page10",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page10.svg"),
+      },
+      {
+        id: "page11",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page11.svg"),
+      },
+      {
+        id: "page12",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page12.svg"),
+      },
+      {
+        id: "page13",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page13.svg"),
+      },
+      {
+        id: "page14",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page14.svg"),
+      },
+      {
+        id: "page15",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/standard/page15.svg"),
+      },
     
     ],
   },
@@ -144,58 +184,32 @@ export const notebooks: Notebook[] = [
     title: "Big Sketchbook 2026",
     year: 2026,
     description:
-      "Páginas amplias para trabajos largos, composiciones y manchas de color.",
+      "Páginas amplias para trabajos largos, composiciones y sketches mas detallados.",
     coverImage: cover("big", "cover.png"),
     coverAlt: "Portada del Big Sketchbook 2026",
     status: "published",
     coverStyle: "kraft",
     pages: [
-      page("big-01", "Página amplia con una flor", [
-        drawing(
-          "d",
-          "images/notebooks/big/flower.svg",
-          "Flor dibujada",
-          45,
-          32,
-          58,
-        ),
-        note("n", "dejar espacio alrededor", 24, 84),
-      ]),
       {
-        id: "big-02",
-        alt: "Página escaneada del Big Sketchbook",
-        fullPageImage: assetUrl("images/notebooks/big/page-02.svg"),
+        id: "page1",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/big/page1.svg"),
       },
-      page("big-03", "Página con un objeto de estudio", [
-        drawing(
-          "d",
-          "images/notebooks/big/cup.svg",
-          "Taza dibujada",
-          45,
-          35,
-          52,
-        ),
-        note("n", "el peso llega después", 28, 82, -3),
-      ]),
-      page("big-04", "Página de composición", [
-        drawing(
-          "d1",
-          "images/notebooks/big/cloth.svg",
-          "Tela dibujada",
-          22,
-          30,
-          42,
-        ),
-        drawing(
-          "d2",
-          "images/notebooks/big/key.svg",
-          "Llave dibujada",
-          70,
-          60,
-          25,
-        ),
-        note("n", "inventario de domingo", 24, 84),
-      ]),
+      {
+        id: "page2",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/big/page2.svg"),
+      },
+      {
+        id: "page3",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/big/page3.svg"),
+      },
+      {
+        id: "page4",
+        alt: "Página escaneada del Sketchbook 2026",
+        fullPageImage: assetUrl("images/notebooks/big/page4.svg"),
+      },
     ],
   },
    {
