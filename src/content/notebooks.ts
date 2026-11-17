@@ -198,4 +198,64 @@ export const notebooks: Notebook[] = [
       ]),
     ],
   },
+   {
+    id: "nb-standard-2023",
+    slug: "sketchbook-2023",
+    title: "Sketchbook 2023",
+    year: 2023,
+    description:
+      "Este es mi sketchbook del año 2023, no esta completo porque me enfoqué más en la u.",
+    coverImage: cover("2023sketchbook", "cover.svg"),
+    coverAlt: "Portada del Sketchbook 2023",
+    status: "published",
+    coverStyle: "linen",
+    pages: [
+      {
+        id: "page0",
+        alt: "Página escaneada del Sketchbook 2023",
+        fullPageImage: assetUrl("images/notebooks/standard/page-01.svg"),
+      }
+    
+    ],
+  },
+  {
+    id: "nb-standard-2021",
+    slug: "sketchbook-2021",
+    title: "Sketchbook 2021",
+    year: 2021,
+    description:
+      "Este es mi sketchbook del año 2021, a mediados de pandemia.",
+    coverImage: cover("2021sketchbook", "cover.svg"),
+    coverAlt: "Portada del Sketchbook 2021",
+    status: "published",
+    coverStyle: "linen",
+    pages: [
+      {
+        id: "page0",
+        alt: "Página escaneada del Sketchbook 2021",
+        fullPageImage: assetUrl("images/notebooks/standard/page-01.svg"),
+      }
+    
+    ],
+  },
+  {
+    id: "nb-standard-2019",
+    slug: "sketchbook-2019",
+    title: "Sketchbook 2019",
+    year: 2019,
+    description:
+      "Este es mi sketchbook del año 2019, cuando todavía estaba en el colegio.",
+    coverImage: cover("2019sketchbook", "cover.svg"),
+    coverAlt: "Portada del Sketchbook 2019",
+    status: "published",
+    coverStyle: "linen",
+    pages: [
+      {
+        id: "page0",
+        alt: "Página escaneada del Sketchbook 2019",
+        fullPageImage: assetUrl("images/notebooks/standard/page-01.svg"),
+      }
+    
+    ],
+  },
 ];
